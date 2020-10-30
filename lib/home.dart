@@ -46,8 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     itemTitle = myTitle;
                   });
                 },
-                decoration:
-                InputDecoration(
+                decoration: InputDecoration(
                     hintText: 'Title',
                     labelText: 'Title'),
                 style: TextStyle(fontSize: 14),
@@ -79,36 +78,36 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
               ],
               rows: items
-                  .map<DataRow>((item) => DataRow(cells: [
-                DataCell(
-                    Checkbox(
-                        value: item['BOUGHT'] == 1
-                            ? true : false,
-                        onChanged: (newValue) {
-                          updateItemBoughtState(
-                              item["ID"],
-                              item["BOUGHT"] == 1
-                                  ? 0 : 1);
+                  .map<DataRow>((item) => DataRow(
+                  cells: [
+                    DataCell(
+                        Checkbox(
+                            value: item['BOUGHT'] == 1
+                                ? true : false,
+                            onChanged: (newValue) {
+                              updateItemBoughtState(
+                                  item["ID"],
+                                  item["BOUGHT"] == 1
+                                      ? 0 : 1);
+                            }),
+                        onTap: () {}),
+                    DataCell(
+                        Text(
+                          item['TITLE'],
+                          style: TextStyle(
+                            decoration: item['BOUGHT'] == 1
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                          ),
+                        ),
+                        onTap: () {}),
+                    DataCell(
+                        Icon(Icons.delete,
+                            color: Color(0xffDB4437), size: 20),
+                        onTap: () async {
+                          deleteItem(item['ID']);
                         }),
-                    onTap: () {}),
-                DataCell(
-                    Text(
-                      item['TITLE'],
-                      style: TextStyle(
-                        decoration: item['BOUGHT'] == 1
-                            ? TextDecoration.lineThrough
-                            : TextDecoration.none,
-                      ),
-                    ),
-                    onTap: () {}),
-                DataCell(
-                    Icon(Icons.delete,
-                        color: Color(0xffDB4437), size: 20),
-                    onTap: () async {
-                      deleteItem(item['ID']);
-                    }),
-              ]))
-                  .toList(),
+                  ])).toList(),
             )
           ],
         ),

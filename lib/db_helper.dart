@@ -19,7 +19,6 @@ Future<void> insertItemsToDb(title, bought) async{
     return txn.rawInsert("INSERT INTO SHOPPING_ITEMS(TITLE, BOUGHT, DATE_ADDED) VALUES('$title', $bought, '$dateAdded')");
   }
   );
-  print('the item has been added');
 }
 
 Future<List> retreiveItemsFromDb() async{
@@ -29,7 +28,7 @@ Future<List> retreiveItemsFromDb() async{
 
 Future<void> updateItemBoughtState(int id, int bought) async {
   Database db = await initilizaeDb();
-  db.rawQuery('UPDATE SHOPPING_ITEMS SET BOUGHT =$bought WHERE ID = $id');
+  db.rawQuery('UPDATE SHOPPING_ITEMS SET BOUGHT = $bought WHERE ID = $id');
 }
 
 Future<void> deleteItem(int id) async {
